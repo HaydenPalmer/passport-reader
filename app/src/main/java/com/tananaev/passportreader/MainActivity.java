@@ -269,6 +269,8 @@ public class MainActivity extends AppCompatActivity {
                         && expirationDate != null && !expirationDate.isEmpty()
                         && birthDate != null && !birthDate.isEmpty()) {
                     BACKeySpec bacKey = new BACKey(passportNumber, birthDate, expirationDate);
+                    IsoDep iso = IsoDep.get(tag);
+                    iso.setTimeout(15 * 1000);
                     new ReadTask(IsoDep.get(tag), bacKey).execute();
                     mainLayout.setVisibility(View.GONE);
                     loadingLayout.setVisibility(View.VISIBLE);
